@@ -1,0 +1,18 @@
+{
+    "include": [
+        "src/"
+    ],
+    "compilerOptions": {
+        "target": "ESNext",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "module": "commonjs",
+        "outDir": "./build",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "strictPropertyInitialization": false,
+        "noFallthroughCasesInSwitch": true,
+        "skipLibCheck": false
+    }
+}

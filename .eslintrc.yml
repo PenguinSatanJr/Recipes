@@ -1,0 +1,18 @@
+extends:
+  - airbnb-base
+  - airbnb-typescript/base
+  - prettier
+parserOptions:
+  project: ./tsconfig.json
+plugins:
+  - prettier
+  - jest
+rules:
+  prettier/prettier: error
+  no-restricted-syntax:
+    - error
+    - ForInStatement
+    - LabeledStatement
+    - WithStatement
+  jest/no-focused-tests: error
+  jest/no-disabled-tests: error
