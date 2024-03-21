@@ -8,7 +8,7 @@ const port = 4001;
 
   initKoaApp().listen(port, () => {
     // eslint-disable-next-line no-console
-    console.log(`songs koa here on ${port} 🐧🐧🐧`);
+    console.log(`recipes koa here on ${port} 🐧🐧🐧`);
   });
 })();
 
