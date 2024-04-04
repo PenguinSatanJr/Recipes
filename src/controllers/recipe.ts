@@ -8,7 +8,7 @@ const recipeRouter = new Router({ prefix: '/recipe' });
 const getRecipes = async (ctx: Context) => {
   const repository = dataSource.getRepository(Recipe);
 
-  const recipes = await repository.findAndCount();
+  const recipes = await repository.find();
 
   ctx.body = recipes;
   ctx.status = 200;
