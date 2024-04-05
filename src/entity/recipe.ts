@@ -6,8 +6,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-const MAX_RECIPE_TITLE_LENGTH = 255;
-const MAX_RECIPE_DESCRIPTION_LENGTH = 1000;
+export const MAX_RECIPE_TITLE_LENGTH = 255;
+export const MAX_RECIPE_DESCRIPTION_LENGTH = 1000;
 
 @Entity()
 export default class Recipe {

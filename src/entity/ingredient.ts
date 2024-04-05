@@ -6,7 +6,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-const MAX_INGREDIENT_NAME_LENGTH = 255;
+export const MAX_INGREDIENT_NAME_LENGTH = 255;
 
 @Entity()
 export default class Ingredient {

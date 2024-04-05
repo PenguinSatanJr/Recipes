@@ -9,12 +9,14 @@ import {
 } from 'typeorm';
 import Recipe from './recipe';
 
+export const MAX_MENU_TITLE_LENGTH = 255;
+
 @Entity()
 export default class Menu {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'varchar', length: 255 })
+  @Column({ type: 'varchar', length: MAX_MENU_TITLE_LENGTH })
   title: string;
 
   @CreateDateColumn()
