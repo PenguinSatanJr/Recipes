@@ -12,8 +12,8 @@ const getIngredients = async (ctx: Context) => {
 
   const ingredients = await repository.find();
 
-  ctx.body = ingredients.map(ingredientApiFilter);
   ctx.status = 200;
+  ctx.body = ingredients.map(ingredientApiFilter);
 };
 
 const createIngredient = async (ctx: Context) => {

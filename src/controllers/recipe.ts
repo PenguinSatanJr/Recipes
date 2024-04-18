@@ -12,8 +12,8 @@ const getRecipes = async (ctx: Context) => {
 
   const recipes = await repository.find();
 
-  ctx.body = recipes;
   ctx.status = 200;
+  ctx.body = recipes.map(recipeApiFilter);
 };
 
 const createRecipe = async (ctx: Context) => {
@@ -21,15 +21,15 @@ const createRecipe = async (ctx: Context) => {
 
   const repository = dataSource.getRepository(Recipe);
 
-  const recipe = repository.create({
-    title,
-    description,
-  });
-
-  const createdRecipe = await repository.save(recipe);
+  const recipe = await repository.save(
+    repository.create({
+      title,
+      description,
+    }),
+  );
 
   ctx.status = 201;
-  ctx.body = recipeApiFilter(createdRecipe);
+  ctx.body = recipeApiFilter(recipe);
 };
 
 recipeRouter.get('/', getRecipes);

@@ -2,12 +2,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinTable,
-  ManyToMany,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import Recipe from './recipe';
+// eslint-disable-next-line import/no-cycle
+import MenuRecipe from './menu-recipe';
 
 export const MAX_MENU_TITLE_LENGTH = 255;
 
@@ -19,17 +19,12 @@ export default class Menu {
   @Column({ type: 'varchar', length: MAX_MENU_TITLE_LENGTH })
   title: string;
 
+  @OneToMany(() => MenuRecipe, (menuRecipe) => menuRecipe.menu)
+  menuRecipes: MenuRecipe[];
+
   @CreateDateColumn()
   createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;
-
-  @ManyToMany('Recipe', 'menus')
-  @JoinTable({
-    name: 'menu_recipe',
-    joinColumn: { name: 'menu_id' },
-    inverseJoinColumn: { name: 'recipe_id' },
-  })
-  recipes: Recipe[];
 }

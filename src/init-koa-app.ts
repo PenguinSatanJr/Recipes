@@ -4,6 +4,7 @@ import Router from '@koa/router';
 import recipe from './controllers/recipe';
 import zodMiddleware from './middleware/zod-middleware';
 import ingredientRouter from './controllers/ingredient';
+import menuRecipeRouter from './controllers/menu-recipe';
 
 export default () => {
   const app = new Koa();
@@ -13,6 +14,8 @@ export default () => {
     recipe.allowedMethods(),
     ingredientRouter.routes(),
     ingredientRouter.allowedMethods(),
+    menuRecipeRouter.routes(),
+    menuRecipeRouter.allowedMethods(),
   );
 
   app
