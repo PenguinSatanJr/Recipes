@@ -5,6 +5,7 @@ import {
   MAX_RECIPE_TITLE_LENGTH,
 } from '../entity/recipe';
 import { MealTime, WeekDay } from '../types';
+import { MAX_MENU_TITLE_LENGTH } from '../entity/menu';
 
 const normalizeWhitespace = (value: string) =>
   value.replace(/\s+/g, ' ').trim();
@@ -15,6 +16,10 @@ const normalizedString = ({ min = 0, max }: { min?: number; max: number }) =>
 const WeekDayEnum = z.nativeEnum(WeekDay);
 
 const MealTimeEnum = z.nativeEnum(MealTime);
+
+export const idPathParamSchema = z.object({
+  id: z.coerce.number().int(),
+});
 
 export const createIngredientBodySchema = z.object({
   name: normalizedString({ max: MAX_INGREDIENT_NAME_LENGTH, min: 1 }),
@@ -38,4 +43,8 @@ export const createMenuRecipeBodySchema = z.object({
   recipeId: z.coerce.number().int(),
   weekDay: WeekDayEnum,
   mealTime: MealTimeEnum,
+});
+
+export const createMenuBodySchema = z.object({
+  title: normalizedString({ max: MAX_MENU_TITLE_LENGTH, min: 1 }),
 });

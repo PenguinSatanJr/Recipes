@@ -1,4 +1,5 @@
 import Ingredient from '../entity/ingredient';
+import Menu from '../entity/menu';
 import MenuRecipe from '../entity/menu-recipe';
 import Recipe from '../entity/recipe';
 
@@ -52,4 +53,11 @@ export const menuRecipeApiFilter = ({
   weekDay,
   mealTime,
   createdAt,
+});
+
+export const menuApiFilter = ({ id, title, createdAt, updatedAt }: Menu) => ({
+  id,
+  title,
+  createdAt,
+  updatedAt,
 });
