@@ -7,6 +7,8 @@ import {
 } from '../api/request-schemas';
 import MenuRecipe from '../entity/menu-recipe';
 import { menuRecipeApiFilter } from '../api/response-schemas';
+import Menu from '../entity/menu';
+import Recipe from '../entity/recipe';
 
 const menuRecipeRouter = new Router({ prefix: '/menu-recipe' });
 
@@ -28,9 +30,25 @@ const createMenuRecipe = async (ctx: Context) => {
   const { menuId, recipeId, weekDay, mealTime } =
     createMenuRecipeBodySchema.parse(ctx.request.body);
 
+  const menuRepository = dataSource.getRepository(Menu);
+
+  const menu = await menuRepository.findOne({ where: { id: menuId } });
+
+  if (!menu) {
+    ctx.throw(404, `Menu with id ${menuId} not found`);
+  }
+
+  const recipeRepository = dataSource.getRepository(Recipe);
+
+  const recipe = await recipeRepository.findOne({ where: { id: recipeId } });
+
+  if (!recipe) {
+    ctx.throw(404, `Recipe with id ${recipeId} not found`);
+  }
+
   const repository = dataSource.getRepository(MenuRecipe);
 
-  const recipe = await repository.save(
+  const menuRecipe = await repository.save(
     repository.create({
       menuId,
       recipeId,
@@ -40,7 +58,7 @@ const createMenuRecipe = async (ctx: Context) => {
   );
 
   ctx.status = 201;
-  ctx.body = menuRecipeApiFilter(recipe);
+  ctx.body = menuRecipeApiFilter(menuRecipe);
 };
 
 menuRecipeRouter.get('/', getMenuRecipes);

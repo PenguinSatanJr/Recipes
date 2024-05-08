@@ -16,9 +16,9 @@ export const ingredientApiFilter = ({
   id,
   name,
   calories,
-  protein,
-  fat,
-  carbs,
+  protein: Number(protein),
+  fat: Number(fat),
+  carbs: Number(carbs),
   createdAt,
   updatedAt,
 });
@@ -45,15 +45,25 @@ export const menuRecipeApiFilter = ({
   weekDay,
   mealTime,
   createdAt,
-}: MenuRecipe) => ({
-  id,
-  menuId,
-  recipeId,
-  recipe: recipeApiFilter(recipe),
-  weekDay,
-  mealTime,
-  createdAt,
-});
+}: MenuRecipe) =>
+  recipe
+    ? {
+        id,
+        menuId,
+        recipeId,
+        recipe: recipeApiFilter(recipe),
+        weekDay,
+        mealTime,
+        createdAt,
+      }
+    : {
+        id,
+        menuId,
+        recipeId,
+        weekDay,
+        mealTime,
+        createdAt,
+      };
 
 export const menuApiFilter = ({ id, title, createdAt, updatedAt }: Menu) => ({
   id,

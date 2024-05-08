@@ -8,6 +8,10 @@ import {
 
 export const MAX_INGREDIENT_NAME_LENGTH = 255;
 
+export const MAX_INGREDIENT_WEIGHT = 100;
+
+export const MAX_CALORIES = 10000;
+
 @Entity()
 export default class Ingredient {
   @PrimaryGeneratedColumn()

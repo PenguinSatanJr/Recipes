@@ -8,6 +8,7 @@ import {
 import { MealTime, WeekDay } from '../types';
 // eslint-disable-next-line import/no-cycle
 import Recipe from './recipe';
+// eslint-disable-next-line import/no-cycle
 import Menu from './menu';
 
 @Entity()

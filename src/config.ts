@@ -9,6 +9,14 @@ type Config = {
   db: DataSourceOptions;
 };
 
+const isTestEnv = process.env.NODE_ENV === 'test';
+
+const defaultUsername = isTestEnv ? 'penguin-test' : 'penguin';
+
+const defaultPassword = isTestEnv ? 'penguin-test' : 'penguin';
+
+const defaultDatabase = isTestEnv ? 'recipes-test' : 'recipes';
+
 const config: Config = {
   db: {
     type: 'postgres',
@@ -17,9 +25,10 @@ const config: Config = {
     port: process.env.TYPEORM_PORT
       ? parseInt(process.env.TYPEORM_PORT, 10)
       : 5432,
-    username: process.env.TYPEORM_USERNAME || 'penguin',
-    password: process.env.TYPEORM_PASSWORD || 'penguin',
-    database: process.env.TYPEORM_DATABASE || 'recipes',
+    username: process.env.TYPEORM_USERNAME || defaultUsername,
+    password: process.env.TYPEORM_PASSWORD || defaultPassword,
+    database: process.env.TYPEORM_DATABASE || defaultDatabase,
+    synchronize: isTestEnv,
     logging: false,
     migrations,
   },
